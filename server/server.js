@@ -21,9 +21,18 @@ io.on('connection', (socket) =>{
         from: "Mike",
         text: "This is sad"
     })
+    socket.emit('newMessage',{
+        from: "john",
+        text: "this is the second log"
+    })
 
     socket.on('createMessage', (message) => {
         console.log("createMessage", message);
+        io.emit('newMessage', {
+            from : "server",
+            text: "hello from server"
+        })
+        
     })
 
     socket.on('disconnect', (socket) =>{
